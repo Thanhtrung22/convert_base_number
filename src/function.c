@@ -10,7 +10,7 @@ void menu()
     printf("2.Convert other base to decimal\n");
     printf("3.Convert binary to octal\n");
     printf("4.Convert binary to hexa\n");
-    printf("6.Add new students\n");
+    printf("5.Exit program\n");
 }
 
 bool check_hexa(char *str)
@@ -137,4 +137,54 @@ char *convert_decimal_to_other(int32_t num, uint8_t base)
         }
     }
     return buffer;
+}
+
+uint32_t convert_other_base_to_decimal(char *str, uint8_t base)
+{
+    uint32_t result = 0;
+    uint8_t temp = 0;
+    size_t len = strlen(str);
+    for(uint8_t i = 0; i < len; i++)
+    {
+        temp = (uint8_t)(str[i] - '0');
+        if(base == 16)
+        {
+            switch(str[i])
+            {
+                case 'a': case 'A':
+                {
+                    temp = 10;
+                    break;
+                }
+                case 'b': case 'B':
+                {
+                    temp = 11;
+                    break;
+                }
+                case 'c': case 'C':
+                {
+                    temp = 12;
+                    break;
+                }
+                case 'd': case 'D':
+                {
+                    temp = 13;
+                    break;
+                }
+                case 'e': case 'E':
+                {
+                    temp = 14;
+                    break;
+
+                }
+                case 'f': case 'F':
+                {
+                    temp = 15;
+                    break;
+                }
+            }
+        }
+        result += (uint32_t)(temp * pow(base,  (double)len - 1 - i));
+    }
+    return result;
 }

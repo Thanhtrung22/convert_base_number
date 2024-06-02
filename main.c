@@ -26,9 +26,11 @@ int main()
             }
             case '2':
             {
+                uint32_t result = 0;
                 get_input_base(&base);
                 get_input_string(input_string, base);
-                printf("\n%s", input_string);
+                result = convert_other_base_to_decimal(input_string, base);
+                printf("\nResult is: %u", result);
                 break;
             }
             case '5':

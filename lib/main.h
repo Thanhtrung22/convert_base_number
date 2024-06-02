@@ -9,6 +9,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include <string.h>
+#include <math.h>
 
 typedef bool (*check_string)(char *);
 
@@ -23,7 +24,7 @@ void get_input_string(char *str, uint8_t base);
 void check_string_input(char *str, check_string func);
 
 char* convert_decimal_to_other(int32_t num, uint8_t base);
-
+uint32_t convert_other_base_to_decimal(char *str, uint8_t base);
 
 
 #endif
