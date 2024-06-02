@@ -68,10 +68,22 @@ int main()
             }
             case '6':
             {
+                char *result = NULL;
+                uint8_t base = 16;
+                get_input_string(input_string, base);
+                result = hex_to_binary(input_string);
+                printf("\nResult is: %s", result);
+                free(result);
+                break;
+
+            }
+            case '7':
+            {
                 printf("\nSee you again");
                 return 0;
             }
         }
+        printf("\nPress any key to continue...");
         getch();
     }
     return 0;

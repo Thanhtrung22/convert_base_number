@@ -31,5 +31,8 @@ char binary_to_hex_char(char* bin_4);
 void binary_to_hex(char *bin, char **hex);
 char* octal_char_to_bin(char octal_char);
 char* octal_to_binary(char *octal);
+char* hex_char_to_bin(char hex_char);
+char* hex_to_binary(char *hex);
+
 
 #endif

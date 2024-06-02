@@ -11,7 +11,8 @@ void menu()
     printf("3.Convert binary to octal\n");
     printf("4.Convert binary to hexa\n");
     printf("5.Convert octal to binary\n");
-    printf("6.Exit program\n");
+    printf("6.Convert hexa to binary\n");
+    printf("7.Exit program\n");
 }
 
 bool check_hexa(char *str)
@@ -341,6 +342,111 @@ char* octal_to_binary(char *octal)
     {
         char *temp = octal_char_to_bin(octal[i]);
         strcpy(result + 3 * i, temp);
+        puts(result);
+    }
+    return result;
+}
+
+char* hex_char_to_bin(char hex_char)
+{
+    char *result = NULL;
+    switch(hex_char)
+    {
+        case '0':
+        {
+            result = "0000";
+            break;
+        }
+        case '1':
+        {
+            result = "0001";
+            break;
+        }
+        case '2':
+        {
+            result = "0010";
+            break;
+        }
+        case '3':
+        {
+            result = "0011";
+            break;
+        }
+        case '4':
+        {
+            result = "0100";
+            break;
+        }
+        case '5':
+        {
+            result = "0101";
+            break;
+        }
+        case '6':
+        {
+            result = "0110";
+            break;
+        }
+        case '7':
+        {
+            result = "0111";
+            break;
+        }
+        
+        case '8':
+        {
+            result = "1000";
+            break;
+        }
+        case '9':
+        {
+            result = "1001";
+            break;
+        }
+        case 'a': case 'A':
+        {
+            result = "1010";
+            break;
+        }
+        case 'b' : case 'B':
+        {
+            result = "1011";
+            break;
+        }
+        case 'c': case 'C':
+        {
+            result = "1100";
+            break;
+        }
+        case 'd': case 'D':
+        {
+            result = "1101";
+            break;
+        }
+        case 'e': case 'E':
+        {
+            result = "1110";
+            break;
+        }
+        case 'f': case 'F':
+        {
+            result = "1111";
+            break;
+        }
+        
+    }
+    return result;
+}
+
+char* hex_to_binary(char *hex)
+{
+    size_t len = strlen(hex);
+    char *result = NULL;
+    result = (char*)malloc((len * 4 + 1 ) * sizeof(char));
+    for(uint8_t i = 0; i < len; i++)
+    {
+        char *temp = hex_char_to_bin(hex[i]);
+        strcpy(result + 4 * i, temp);
         puts(result);
     }
     return result;
