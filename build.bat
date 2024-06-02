@@ -1,0 +1,1 @@
+gcc main.c src/function.c -o main -Ilib -Wall -Wextra -Wconversion -Wpedantic
