@@ -6,10 +6,24 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <ctype.h>
+#include <stdbool.h>
+#include <string.h>
+
+typedef bool (*check_string)(char *);
 
 void menu();
+bool check_hexa(char* str);
+bool check_binary(char* str);
+bool check_other_base(char *str);
+
 void get_input_num(int32_t *num);
-char* convert_decimal_to_other(int32_t num, uint8_t base);
 void get_input_base(uint8_t *base);
+void get_input_string(char *str, uint8_t base);
+void check_string_input(char *str, check_string func);
+
+char* convert_decimal_to_other(int32_t num, uint8_t base);
+
+
 
 #endif
