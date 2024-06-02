@@ -16,7 +16,7 @@ typedef bool (*check_string)(char *);
 void menu();
 bool check_hexa(char* str);
 bool check_binary(char* str);
-bool check_other_base(char *str);
+bool check_octal(char *str);
 
 void get_input_num(int32_t *num);
 void get_input_base(uint8_t *base);
@@ -29,4 +29,7 @@ char binary_to_octal_char(char* bin_3);
 void binary_to_octal(char *bin, char **octal);
 char binary_to_hex_char(char* bin_4);
 void binary_to_hex(char *bin, char **hex);
+char* octal_char_to_bin(char octal_char);
+char* octal_to_binary(char *octal);
+
 #endif

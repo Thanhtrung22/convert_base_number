@@ -57,6 +57,17 @@ int main()
             }
             case '5':
             {
+                char *result = NULL;
+                uint8_t base = 8;
+                get_input_string(input_string, base);
+                result = octal_to_binary(input_string);
+                printf("\nResult is: %s", result);
+                free(result);
+                break;
+
+            }
+            case '6':
+            {
                 printf("\nSee you again");
                 return 0;
             }

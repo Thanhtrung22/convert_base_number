@@ -25,11 +25,11 @@ bool check_hexa(char *str)
     }
     return true;
 }
-bool check_other_base(char *str)
+bool check_octal(char *str)
 {
     for (int8_t i = 0; str[i] != '\0'; i++)
     {
-        if (!isdigit(str[i]))
+        if (str[i] < '0' ||  str[i] > '7')
         {
             return false;
         }
@@ -81,9 +81,9 @@ void get_input_string(char *str, uint8_t base)
             break;
            
         } 
-        default:
+        case 8:
         {
-            check_string_input(str, check_other_base);
+            check_string_input(str, check_octal);
             break;
         }
     }
@@ -94,11 +94,11 @@ void get_input_base(uint8_t *base)
     int8_t check = 0;
     do
     {
-        printf("\nEnter base wanted convert (base > 1): ");
+        printf("\nEnter base wanted convert (base = 2 or 8 or 10 or 16): ");
         check = (int8_t)scanf("%hhu", base);
         while (getchar() != '\n')
             ;
-    } while (check == 0 || *base == 1);
+    } while (check == 0 || (*base != 2 && *base !=  8 && *base != 10 && *base != 16));
 }
 void get_input_num(int32_t *num)
 {
@@ -275,11 +275,73 @@ void binary_to_hex(char *bin, char **hex)
     for(uint8_t i = 0; i < new_len; i += 4)
     {
         strncpy(bin_4, new_bin + i, 4);
-        puts(bin_4);
         hex_char = binary_to_hex_char(bin_4);
-        putchar(hex_char);
         (*hex)[index++] = hex_char;
     }
     (*hex)[index] = '\0';
 
+}
+
+char* octal_char_to_bin(char octal_char)
+{
+    char *result = NULL;
+    switch(octal_char)
+    {
+        case '0':
+        {
+            result = "000";
+            break;
+        }
+        case '1':
+        {
+            result = "001";
+            break;
+        }
+        case '2':
+        {
+            result = "010";
+            break;
+        }
+        case '3':
+        {
+            result = "011";
+            break;
+        }
+        case '4':
+        {
+            result = "100";
+            break;
+        }
+        case '5':
+        {
+            result = "101";
+            break;
+        }
+        case '6':
+        {
+            result = "110";
+            break;
+        }
+        case '7':
+        {
+            result = "111";
+            break;
+        }
+        
+    }
+    return result;
+}
+
+char* octal_to_binary(char *octal)
+{
+    size_t len = strlen(octal);
+    char *result = NULL;
+    result = (char*)malloc((len * 3 + 1 ) * sizeof(char));
+    for(uint8_t i = 0; i < len; i++)
+    {
+        char *temp = octal_char_to_bin(octal[i]);
+        strcpy(result + 3 * i, temp);
+        puts(result);
+    }
+    return result;
 }
