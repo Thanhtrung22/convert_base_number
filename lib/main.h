@@ -25,6 +25,7 @@ void check_string_input(char *str, check_string func);
 
 char* convert_decimal_to_other(int32_t num, uint8_t base);
 uint32_t convert_other_base_to_decimal(char *str, uint8_t base);
-
+char binary_to_octal_char(char* bin_3);
+void binary_to_octal(char *bin, char **octal);
 
 #endif

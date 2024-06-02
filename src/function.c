@@ -10,7 +10,8 @@ void menu()
     printf("2.Convert other base to decimal\n");
     printf("3.Convert binary to octal\n");
     printf("4.Convert binary to hexa\n");
-    printf("5.Exit program\n");
+    printf("5.Convert octal to binary\n");
+    printf("6.Exit program\n");
 }
 
 bool check_hexa(char *str)
@@ -93,11 +94,11 @@ void get_input_base(uint8_t *base)
     int8_t check = 0;
     do
     {
-        printf("\nEnter base wanted convert: ");
+        printf("\nEnter base wanted convert (base > 1): ");
         check = (int8_t)scanf("%hhu", base);
         while (getchar() != '\n')
             ;
-    } while (check == 0);
+    } while (check == 0 || *base == 1);
 }
 void get_input_num(int32_t *num)
 {
@@ -187,4 +188,50 @@ uint32_t convert_other_base_to_decimal(char *str, uint8_t base)
         result += (uint32_t)(temp * pow(base,  (double)len - 1 - i));
     }
     return result;
+}
+
+char binary_to_octal_char(char* bin_3)
+{
+    uint8_t result = 0;
+    size_t len = strlen(bin_3);
+    uint8_t temp = 0;
+    for(uint8_t i = 0; i < len; i++)
+    {
+        temp =(uint8_t) bin_3[i] - '0';
+         result += (uint8_t)(temp * pow(2,  (double)len - 1 - i));
+    }
+    return (char)(result + '0');
+}
+
+void binary_to_octal(char *bin, char **octal)
+{
+    size_t len = strlen(bin);
+    uint8_t padding = 0;
+    if(len % 3)
+    {
+        padding =(uint8_t) (3 - (len % 3));
+    }
+    const uint8_t new_len = (uint8_t)len + padding;
+    char new_bin[new_len + 1];
+    for(uint8_t i = 0; i < padding; i++)
+    {
+        new_bin[i] = '0';
+    }
+    strcpy(new_bin + padding, bin);
+    char octal_char = 0;
+    char bin_3[4];
+    uint8_t index = 0;
+    *octal = (char*) malloc(((new_len / 3) + 1) * sizeof(char));
+    for(uint8_t i = 0; i < new_len; i += 3)
+    {
+        strncpy(bin_3, new_bin + i, 3);
+        
+        
+        octal_char = binary_to_octal_char(bin_3);
+       
+        (*octal)[index++] = octal_char;
+       
+    }
+    (*octal)[index] = '\0';
+    
 }

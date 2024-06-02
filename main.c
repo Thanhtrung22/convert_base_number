@@ -5,7 +5,6 @@ int main()
     int32_t select = '\0';
     int32_t num = 0;
     uint8_t base = 0;
-    char *result = NULL;
     char input_string[100];
 
     while(1)
@@ -18,6 +17,7 @@ int main()
         {
             case '1':
             {
+                char *result = NULL;
                 get_input_num(&num);
                 get_input_base(&base);
                 result = convert_decimal_to_other(num, base);
@@ -32,6 +32,17 @@ int main()
                 result = convert_other_base_to_decimal(input_string, base);
                 printf("\nResult is: %u", result);
                 break;
+            }
+            case '3':
+            {
+                char *result = NULL;
+                uint8_t base = 2;
+                get_input_string(input_string, base);
+                binary_to_octal(input_string, &result);
+                printf("\nResult is: %s", result);
+                free(result);
+                break;
+
             }
             case '5':
             {
