@@ -27,5 +27,6 @@ char* convert_decimal_to_other(int32_t num, uint8_t base);
 uint32_t convert_other_base_to_decimal(char *str, uint8_t base);
 char binary_to_octal_char(char* bin_3);
 void binary_to_octal(char *bin, char **octal);
-
+char binary_to_hex_char(char* bin_4);
+void binary_to_hex(char *bin, char **hex);
 #endif

@@ -235,3 +235,51 @@ void binary_to_octal(char *bin, char **octal)
     (*octal)[index] = '\0';
     
 }
+
+char binary_to_hex_char(char* bin_4)
+{
+    uint8_t result = 0;
+    size_t len = strlen(bin_4);
+    char hex[] = "0123456789abcdef";
+    for(uint8_t i = 0; i < len; i++)
+    {
+        if(bin_4[i] == '1')
+        {
+            result += (uint8_t)(1 << (len - i - 1));
+        }
+       
+    }
+
+    return hex[result];
+}
+
+void binary_to_hex(char *bin, char **hex)
+{
+    size_t len = strlen(bin);
+    uint8_t padding = 0;
+    if(len % 4)
+    {
+        padding = (uint8_t)(4 - len % 4);
+    }
+    const size_t new_len = len + padding;
+    char new_bin[new_len];
+    for(uint8_t i = 0; i < padding; i++)
+    {
+        new_bin[i] = '0';
+    }
+    strcpy(new_bin + padding, bin);
+    char hex_char = 0;
+    char bin_4[5];
+    uint8_t index = 0;
+    *hex = (char*) malloc(((new_len / 4) + 1) * sizeof(char));
+    for(uint8_t i = 0; i < new_len; i += 4)
+    {
+        strncpy(bin_4, new_bin + i, 4);
+        puts(bin_4);
+        hex_char = binary_to_hex_char(bin_4);
+        putchar(hex_char);
+        (*hex)[index++] = hex_char;
+    }
+    (*hex)[index] = '\0';
+
+}

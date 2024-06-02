@@ -44,6 +44,17 @@ int main()
                 break;
 
             }
+            case '4':
+            {
+                char *result = NULL;
+                uint8_t base = 2;
+                get_input_string(input_string, base);
+                binary_to_hex(input_string, &result);
+                printf("\nResult is: %s", result);
+                free(result);
+                break;
+
+            }
             case '5':
             {
                 printf("\nSee you again");
